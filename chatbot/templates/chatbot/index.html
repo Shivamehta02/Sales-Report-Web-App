@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}chatbot{% endblock title %}
+{% block content %}
+
+<h1>Ask a question</h1>
+<br>
+<form method="post">
+{% csrf_token %}
+    <div class="mb-3">
+        <textarea input type="text" class="form-control" name="user_input" rows="3" autocomplete="off" placeholder="ex: How to improve my sales data??"  rows="3" cols="30"></textarea>
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </div>
+</form>
+
+{% if response %}
+<div class="card">
+    <div class="card-body">
+        {{response|safe}}
+    </div>
+    
+</div>
+    {% endif %}
+
+
+{% endblock content %}
