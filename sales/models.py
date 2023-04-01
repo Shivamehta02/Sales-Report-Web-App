@@ -1,3 +1,4 @@
+from pickle import TRUE
 from django.db.models.deletion import CASCADE
 from products.models import Product
 from django.db import models
@@ -13,7 +14,7 @@ class Position(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
     quantity = models.PositiveBigIntegerField()
     price = models.FloatField(blank=True)
-    created = models.DateTimeField(blank=True)
+    created = models.DateTimeField(blank=True, null=TRUE)
 
     def save(self, *args,** kwargs):
         self.price = self.product.price * self.quantity

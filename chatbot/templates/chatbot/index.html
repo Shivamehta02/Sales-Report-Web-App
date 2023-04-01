@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}chatbot{% endblock title %}
 {% block content %}
+{% load static %}
+<h1>Ask a Question <img src="{% static 'chatbot/OPENAI.png'   %}" alt="My image" width="100" height="100"></h1> 
+{% comment %} <p class="text-end">API SRC - <img src="{% static 'chatbot/OPENAI.png'   %}" alt="My image" width="100" height="100"></p> {% endcomment %}
 
-<h1>Ask a question</h1>
+
+<p class="text-start">[Note- The chatbot may give some error messages as API is still in progress]</p>
 <br>
 <form method="post">
 {% csrf_token %}
     <div class="mb-3">
         <textarea input type="text" class="form-control" name="user_input" rows="3" autocomplete="off" placeholder="ex: How to improve my sales data??"  rows="3" cols="30"></textarea>
-        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        <button type="submit" class="btn btn-primary mt-3">Ask Me</button>
     </div>
 </form>
 

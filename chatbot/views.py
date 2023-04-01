@@ -14,7 +14,7 @@ def index(request):
     if api_key is not None and  request.method =='POST':
         user_input = request.POST.get('user_input')
         prompt = user_input
-        # prompt = f"if the question is related to sales or buisness- answer it:{user_input}, else say - I can only answer sales or buisness related queries"
+        # prompt = f"if the question is related to sales or buisness or greetings- answer it:{user_input}, else say - I can only answer sales or buisness related queries"
         
         
         response = openai.Completion.create(

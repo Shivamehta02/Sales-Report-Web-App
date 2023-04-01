@@ -19,6 +19,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import login_view,logout_view, register_view
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('sales.urls',namespace= 'sales')),
@@ -27,9 +29,15 @@ urlpatterns = [
     path('login/',login_view,name='login'),
     path('logout/',logout_view,name='logout'),
     path('register/',register_view, name= 'register'),
+    path('chatbot/', include('chatbot.urls')),
+    
     
     
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header = "Report Admin"
+admin.site.site_title = "Report Admin"
+admin.site.index_title = "Welcome to Report Admin settings"

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'profiles',
     'reports',
     'sales',
+    'chatbot',
     'crispy_forms',
 ]
 
@@ -52,6 +53,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -131,12 +133,16 @@ LOGIN_URL = "/login/"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR , "staticfiles")  
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static', 
     BASE_DIR / 'sales'/ 'static',
     BASE_DIR / 'reports'/ 'static',
+    BASE_DIR / 'chatbot'/ 'static',
 ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'
+
+# note bug 1 - csv not workink with different date only ranging from 12/3/21 to 13 /3/21
