@@ -12,7 +12,10 @@
 {% csrf_token %}
     <div class="mb-3">
         <textarea input type="text" class="form-control" name="user_input" rows="3" autocomplete="off" placeholder="ex: How to improve my sales data??"  rows="3" cols="30"></textarea>
-        <button type="submit" class="btn btn-primary mt-3">Ask Me</button>
+        
+        <button type="submit" class="btn btn-primary mt-3">
+            {% if response %} Ask Again{% else %} Ask Me{% endif %}
+        </button>
     </div>
 </form>
 

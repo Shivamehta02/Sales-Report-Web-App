@@ -83,7 +83,7 @@
 <!-- Custom styles for this template -->
 
 
-<body class="text-center">
+<body class="container text-center">
 
      
   <main class="form-signin">
@@ -91,34 +91,34 @@
       {% csrf_token %}
       <div class="container">
 
-        {% if error_message %}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>{{error_message}}</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endif %}
+            {% if error_message %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>{{error_message}}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
 
-      <a class="" href=""><img src="{% static 'favicon.ico' %}" class="logo-sm"></a>
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+          <a class="" href=""><img src="{% static 'favicon.ico' %}" class="logo-sm"></a>
+          <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-      <div class="form-floating">
-        <input type="text" class="form-control" id="floatingInput" placeholder="Username" name = "username">
-        <label for="floatingInput">Username</label>
-      </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Username" name = "username">
+            <label for="floatingInput">Username</label>
+          </div>
 
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name = "password">
-        <label for="floatingPassword">Password</label>
-      </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name = "password">
+            <label for="floatingPassword">Password</label>
+          </div>
 
-      
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
-      <br>
-      <p class="mt-2  text-muted"> or don't have an account </p>
-      <a href="{%url 'register'%}" class="w-50 btn btn-lg btn-secondary">Sign up</a>
-      
-      <p class="mt-5 mb-3 text-muted">&copy; 2019–2023</p>
-      </div>
+          
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+          <br>
+          <p class="mt-2  text-muted"> or don't have an account </p>
+          <a href="{%url 'register'%}" class="w-50 btn btn-lg btn-secondary">Sign up</a>
+          
+          <p class="mt-5 mb-3 text-muted">&copy; 2019–2023</p>
+    </div>
     </form>
     </main>
 
