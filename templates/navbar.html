@@ -4,6 +4,7 @@
 {% url 'reports:from-file' as path_to_from_files %}
 {% url 'reports:main' as path_to_reports %}
 {% url 'chatbot:chatbot' as path_to_chatbot %}
+{% url 'admin:index'  as path_to_admin %}
 
 {% comment %} now for dropdown |profiles and Logout {% endcomment %}
 {% url 'profiles:my' as path_to_my_profile %}
@@ -43,6 +44,7 @@
         </div>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <li><a class="dropdown-item {% if request.path == path_to_my_profile%}active{% endif %}" href="{{path_to_my_profile}}">Profile</a></li>
+          <li><a class="dropdown-item {% if request.path == path_to_admin %}active {% endif %}" href="{{path_to_admin}}">Admin</a></li>
           <li><a class="dropdown-item" href="/logout">Logout</a></li>
         </ul>
       </div>
