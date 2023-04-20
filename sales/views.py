@@ -36,9 +36,10 @@ def home_view(request):
         sale_qs = Sale.objects.filter(created__date__lte= date_to, created__date__gte= date_from) #query set
         if len(sale_qs) > 0:
             sales_df = pd.DataFrame(sale_qs.values())
-            sales_df['customer_id'] = sales_df['salesman_id'].apply(get_customer_from_id)
+            sales_df['customer_id'] = sales_df['customer_id'].apply(get_customer_from_id)
             sales_df['salesman_id'] = sales_df['salesman_id'].apply(get_salesman_from_id)
-            sales_df['created']= sales_df['created'].apply(lambda x: x.strftime('%y-%m-%d'))
+            sales_df['created']= sales_df['created'].apply(lambda x: x.strftime('%d-%m-%y'))
+            sales_df['updated']= sales_df['updated'].apply(lambda x: x.strftime('%d-%m-%y'))
             sales_df.rename({'customer_id': 'customer','salesman_id': 'salesman', 'id': 'sales_id'},axis=1,inplace= True)
             
             positions_data = []
@@ -82,14 +83,14 @@ def home_view(request):
     }
     return render(request, 'sales/home.html',context)
 
-# class based View
-class SaleListView(LoginRequiredMixin,ListView):
-    model = Sale
-    template_name = 'sales/main.html'
+# # class based View
+# class SaleListView(LoginRequiredMixin,ListView):
+#     model = Sale
+#     template_name = 'sales/main.html'
     
-class SaleDetailView(LoginRequiredMixin,DetailView):
-    model = Sale
-    template_name = 'sales/detail.html'
+# class SaleDetailView(LoginRequiredMixin,DetailView):
+#     model = Sale
+#     template_name = 'sales/detail.html'
     
 @login_required
 def sale_List_view(request):

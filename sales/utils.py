@@ -12,7 +12,7 @@ def generate_code():
 
 
 def get_salesman_from_id(val):
-    salesman  =Profile.objects.get(id=val)
+    salesman  = Profile.objects.get(id=val)
     return salesman.user.username
     
 
@@ -45,6 +45,8 @@ def get_chart(chart_type, data,results_by, **kwargs):
     if chart_type == '#1':
         print('bar chart')
         plt.bar(d[key],d['total_price'])
+        plt.xlabel(key)
+        plt.ylabel("total price")
     elif chart_type == '#2':
         print('pie chart')
         labels = kwargs.get('labels')

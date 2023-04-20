@@ -53,10 +53,11 @@ def csv_upload_view(request): #for csv
                 reader = csv.reader(f)
                 reader.__next__() #basically to remove column titles from csv
                 for row in reader :
-                    data = " ".join(row) #to convert rows ino strings
-                    data = data.split()
+                    print(row, type(row))
+                    data = "".join(row) #to convert rows ino strings
+                    data = data.split(';')
                     print(data)
-                    # data.pop()#it removes empty list or column
+                    data.pop()#it removes empty list or column
                 
                     transaction_id = data[1]
                     product = data[2]
@@ -77,17 +78,20 @@ def csv_upload_view(request): #for csv
                         sale_obj, _ = Sale.objects.get_or_create(transaction_id=transaction_id,customer =customer_obj,salesman= salesman_obj,created = date)
                         sale_obj.positions.add(position_obj)
                         sale_obj.save()
+                return JsonResponse({'ex': False})
+        else:
+            return JsonResponse({'ex': True})
              
     return HttpResponse()
 
 #these functions are automatically generated
-def new_func1(data):
-    data = new_func(data)
-    return data
+# def new_func1(data):
+#     data = new_func(data)
+#     return data
 
-def new_func(data):
-    data = data.split(';')
-    return data
+# def new_func(data):
+#     data = data.split(';')
+#     return data
         
     
 @login_required
