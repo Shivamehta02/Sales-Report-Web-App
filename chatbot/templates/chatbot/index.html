@@ -2,31 +2,52 @@
 {% block title %}chatbot{% endblock title %}
 {% block content %}
 {% load static %}
-<h1>Ask a Question <img src="{% static 'chatbot/OPENAI.png'   %}" alt="My image" width="100" height="100"></h1> 
-{% comment %} <p class="text-end">API SRC - <img src="{% static 'chatbot/OPENAI.png'   %}" alt="My image" width="100" height="100"></p> {% endcomment %}
+<h1>Ask a Question  <img src="{% static 'chatbot/OPENAI.png'   %}" style="float:right;" alt="My image" width="150" height="150"></h1>
+<div class="badge bg-secondary text-wrap" style="width: 6rem;">
+    Active User 
+</div> 
+<div class="badge bg-primary text-wrap" style="width: 6rem;">
+{{username}} 
+</div> 
 
-
-<p class="text-start">[Note- The chatbot may give some error messages as API is still in progress]</p>
+<p class="text-muted ">[Note- The chatbot may give some error messages as API is still in progress]</p>
 <br>
-<form method="post">
-{% csrf_token %}
-    <div class="mb-3">
-        <textarea input type="text" class="form-control" name="user_input" rows="3" autocomplete="off" placeholder="ex: How to improve my sales data??"  rows="3" cols="30"></textarea>
-        
-        <button type="submit" class="btn btn-primary mt-3">
-            {% if response %} Ask Again{% else %} Ask Me{% endif %}
-        </button>
-    </div>
-</form>
+{% if prompt %}
 
-{% if response %}
-<div class="card">
+<div>
+    <img src="{{profile.avatar.url}}" style="float:left;" alt = "my-profile" class ="avatar-sm">
+    <h6 > {{prompt|safe}}</h6>
+    
+</div> 
+{% endif %}
+<br>
+
+<div class="card" style="background-color: #f1f1f1;">
     <div class="card-body">
-        {{response|safe}}
+        
+    {% if response %}
+    {{response|safe}}
+    {% else %}
+    <p class="text-muted ">your answer  will be shown here...</p>
+    {% endif %}
     </div>
     
-</div>
-    {% endif %}
+</div> 
 
 
+<br>
+<form  method="post">
+{% csrf_token %}
+    <div class="card mb-3 ">
+        
+        <textarea  input type="text" class="form-control " name="user_input" rows="3" autocomplete="off"  placeholder="ex: How to improve my sales data?? 
+ex: Tell me about this project??"
+          rows="3" cols="30"></textarea>
+    </div>
+        <button type="submit" class="btn btn-dark ">
+            {% if response %} Ask Again{% else %} Ask Me{% endif %}
+        </button>
+</form>
+<br>
+    
 {% endblock content %}

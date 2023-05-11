@@ -15,6 +15,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 @login_required
 def home_view(request):
     sales_df = None
+    styled_table= None
     positions_df = None
     merged_df = None
     df = None
@@ -62,10 +63,26 @@ def home_view(request):
             chart = get_chart(chart_type, sales_df, results_by)
             
             
-            sales_df = sales_df.to_html()
-            positions_df = positions_df.to_html()
-            merged_df = merged_df.to_html()
-            df = df.to_html()
+            sales_df = sales_df.to_html(classes=["table", "table table-striped ", "table-hover","thead-dark"])
+            header_styles = """
+            th {
+                text-align: center;
+            }
+            """
+
+            data_styles = """
+            td {
+                text-align: center;
+            }
+            """
+
+            # combine the CSS styles with the HTML table
+            styled_table = f"<style>{header_styles}{data_styles}</style>{sales_df}"   #we have changed sales_df to styled table to apply html classes
+            #sales_df = sales_df.to_html()
+            # positions_df = positions_df.to_html()
+            positions_df = positions_df.to_html(classes=["table", "table table-striped ", "table-hover","thead-dark"])
+            merged_df = merged_df.to_html(classes=["table", "table table-striped ", "table-hover","thead-dark"])
+            df = df.to_html(classes=["table", "table table-striped ", "table-hover","thead-dark"])
             
         else:
            no_data = 'No data is available in this range of date'
@@ -74,6 +91,7 @@ def home_view(request):
     context = {
         'search_form':search_form,
         'report_form':report_form,
+        'styled_table' : styled_table,
         'sales_df':sales_df,
         'positions_df': positions_df,
         'merged_df':merged_df,

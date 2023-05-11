@@ -6,13 +6,18 @@ sales list
 
 
 {% block content %}
-sales list
-<br>
+<p class="h4 ">Sales List</p>
+
+<br>  
 
 {% for obj in object_list %}
    <div class="card mb-3" >
+      <div class="card-header text-muted">
+         Transaction Id
+       </div>
    {% comment %} <a href = "{% url 'sales:detail' obj.pk %}" class= "card-body">{{obj.transaction_id}}</a> or we can use obj.get_absolute_url{% endcomment %} 
-   <a href = "{{obj.get_absolute_url}}" class= "card-body">{{obj.transaction_id}}</a>
+   
+   <a href = "{{obj.get_absolute_url}}" class= "card-body"> {{obj.transaction_id}}</a>
    </div>
 {% endfor %}
 

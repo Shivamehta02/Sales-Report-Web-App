@@ -51,16 +51,17 @@ home
 <br>
 
 {% if sales_df %}
-    sales df
-    {{sales_df|safe}}
+<p class="h4 ">Sales df </p>
+    {% comment %} {{sales_df|safe}} {% endcomment %}
+    {{styled_table|safe}}
 <br>
-    positions df
+<p class="h4 ">Positions df</p>
     {{positions_df|safe}}
 <br>
-    merged df
+<p class="h4 "> Merged df</p>
     {{merged_df|safe}}
 <br>
-    grouped df
+<p class="h4 ">Grouped df</p>
     {{df|safe}}
 <br>
     Chart

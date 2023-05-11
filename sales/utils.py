@@ -50,7 +50,8 @@ def get_chart(chart_type, data,results_by, **kwargs):
     elif chart_type == '#2':
         print('pie chart')
         labels = kwargs.get('labels')
-        plt.pie(data=d, x='total_price',labels =d[key].values)
+        plt.pie(data=d, x='total_price',labels =d[key].values, shadow=True)
+        plt.legend()
     elif chart_type == '#3':
         print('line chart')
         plt.plot(d[key], d['total_price'], color='green',marker= 'o', linestyle= 'dashed')

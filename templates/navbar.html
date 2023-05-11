@@ -33,21 +33,25 @@
           <a class="nav-link {% if request.path == path_to_reports%}active{% endif %}" href="{{path_to_reports}}">Reports</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if request.path == path_to_chatbot%}active{% endif %}" href="{{path_to_chatbot}}">Chatbot</a>
+          <a class="nav-link {% if request.path == path_to_chatbot%}active{% endif %}" href="{{path_to_chatbot}}">Chatbot </a>
         </li>
+        <li class="nav-item">
+          <i class="bi bi-chat"></i>
+        </li>
+        
       </ul>
-    </div>
-    {% if request.user.is_authenticated %}
-      <div class="nav-item dropdown">
-        <div class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      {% if request.user.is_authenticated %}
+      <div class="nav-item dropdown ms-auto">
+        <div class="nav-link dropdown-toggle " id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="{{request.user.profile.avatar.url}}" class="avatar-sm">&nbsp;{{request.user}}
         </div>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <li><a class="dropdown-item {% if request.path == path_to_my_profile%}active{% endif %}" href="{{path_to_my_profile}}">Profile</a></li>
+          <li><a class="dropdown-item {% if request.path == path_to_my_profile%}active{% endif %}" href="{{path_to_my_profile}}">Profile  <i class="bi bi-person-circle"></i></a></li>
           <li><a class="dropdown-item {% if request.path == path_to_admin %}active {% endif %}" href="{{path_to_admin}}">Admin</a></li>
-          <li><a class="dropdown-item" href="/logout">Logout</a></li>
+          <li><a class="dropdown-item" href="/logout">Logout <i class="bi bi-box-arrow-right"></i></a></li>
         </ul>
       </div>
-    {% endif %}
+      {% endif %}
+    </div>
   </div>
 </nav>

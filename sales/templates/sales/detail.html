@@ -25,6 +25,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Product</th>
+      <th scope="col">Product Image</th>
       <th scope="col">Quantity</th>
       <th scope="col">Price</th>
       <th scope="col">Customer</th>
@@ -35,6 +36,7 @@
     <tr>
             <th scope="row">{{forloop.counter}}</th>
             <td>{{pos.product.name}}</td>
+            <td><img src="{{pos.product.image.url}}" alt = "no-image" class ="product-sm"></td>
             <td>{{pos.quantity}}</td>
             <td>{{pos.price}}</td>
             <td>{{pos.get_sales_customer}}</td>
