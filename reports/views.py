@@ -50,14 +50,23 @@ def csv_upload_view(request): #for csv
             obj.csv_file = csv_file
             obj.save()
             with open(obj.csv_file.path,'r') as f:
-                reader = csv.reader(f)
-                reader.__next__() #basically to remove column titles from csv
+                reader = csv.reader(f,delimiter=',')
+                # reader.__next__() #basically to remove column titles from csv
+                next(reader)
                 for row in reader :
-                    print(row, type(row))
-                    data = "".join(row) #to convert rows ino strings
-                    data = data.split(';')
-                    print(data)
-                    data.pop()#it removes empty list or column
+                    # print(row, type(row))
+        
+                    data = []
+                    for item in row:
+                        split_items = item.split(';')
+                        data.extend(split_items)
+                    # print(data, type(data))
+                    # print(row, type(row))
+                    # data = "".join(row) #to convert rows ino strings
+                    # print(data,type(data) )
+                    # data = data.split(';')
+                    # print(data,type(data) )
+                    # data.pop()#it removes empty list or column
                 
                     transaction_id = data[1]
                     product = data[2]
@@ -68,7 +77,9 @@ def csv_upload_view(request): #for csv
                     try:
                         product_obj = Product.objects.get( name__iexact = product)
                     except Product.DoesNotExist:
-                        product_obj =None
+                        product_obj = None
+                        
+                    print(product_obj)
                         
                     if product_obj is not None:
                         customer_obj, _= Customer.objects.get_or_create(name = customer)
@@ -78,10 +89,7 @@ def csv_upload_view(request): #for csv
                         sale_obj, _ = Sale.objects.get_or_create(transaction_id=transaction_id,customer =customer_obj,salesman= salesman_obj,created = date)
                         sale_obj.positions.add(position_obj)
                         sale_obj.save()
-                return JsonResponse({'ex': False})
-        else:
-            return JsonResponse({'ex': True})
-             
+               
     return HttpResponse()
 
 #these functions are automatically generated
