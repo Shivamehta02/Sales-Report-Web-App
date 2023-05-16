@@ -6,13 +6,15 @@ from .views import(
     ReportDetailtView,
     render_pdf_view ,
     UploadTemplateview , 
-    csv_upload_view,        
+    csv_upload_view, 
+    delete_report,       
 )   
 
 app_name = 'reports'
 
 urlpatterns = [
     path('',ReportListView.as_view(),name='main'),
+    path('delete/<int:id>/',delete_report,name='delete_report'),
     path('save/',create_report_view,name='create-report'),
     path('upload/',csv_upload_view, name='upload'),#for csv
     path('from_file/',UploadTemplateview.as_view(),name='from-file'),#for csv

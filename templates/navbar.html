@@ -1,4 +1,6 @@
 {% load static %}
+
+
 {% url 'sales:home' as path_to_home %}
 {% url 'sales:list' as path_to_sales %}
 {% url 'reports:from-file' as path_to_from_files %}
@@ -13,9 +15,21 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd; font-family: Poppins-Bold;">
   <div class="container-fluid">
     <a class="navbar-brand" href=""><img src="{% static 'favicon.ico' %}" class="logo-sm"></a>
-    
+{% comment %}     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
+    </button> {% endcomment %}
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -33,11 +47,9 @@
           <a class="nav-link {% if request.path == path_to_reports%}active{% endif %}" href="{{path_to_reports}}">Reports</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if request.path == path_to_chatbot%}active{% endif %}" href="{{path_to_chatbot}}">Chatbot </a>
+          <a class="nav-link {% if request.path == path_to_chatbot%}active{% endif %}" href="{{path_to_chatbot}}">Chatbot <i class="bi bi-chat"></i></a>
         </li>
-        <li class="nav-item">
-          <i class="bi bi-chat"></i>
-        </li>
+       
         
       </ul>
       {% if request.user.is_authenticated %}

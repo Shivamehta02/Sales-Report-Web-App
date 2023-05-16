@@ -1,13 +1,14 @@
 from os import name
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from django.utils import dateparse
 from profiles.models import Profile
 from django.http import JsonResponse
 from .utils import get_report_image
 from .models import Report
+from chatbot.models import QAPair
 from django.views.generic import ListView,DetailView,TemplateView
 
-#for generating pdf
+#for generating pdf 
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -91,16 +92,7 @@ def csv_upload_view(request): #for csv
                         sale_obj.save()
                
     return HttpResponse()
-
-#these functions are automatically generated
-# def new_func1(data):
-#     data = new_func(data)
-#     return data
-
-# def new_func(data):
-#     data = data.split(';')
-#     return data
-        
+   
     
 @login_required
 def create_report_view(request): #for giving the report to reports section 
@@ -112,6 +104,8 @@ def create_report_view(request): #for giving the report to reports section
         img = get_report_image(image)
         
         author = Profile.objects.get(user = request.user)
+        
+
         Report.objects.create(name = name,remarks = remarks, image=img,author= author)
         return JsonResponse({'msg':'send'})
     return JsonResponse({})
@@ -139,4 +133,17 @@ def render_pdf_view(request,pk): #for generating pdf we are coping this function
     if pisa_status.err:
        return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
+
+# def delete_report(request,id):
+#     report = Report.objects.filter(id=id)
+#     report.delete()
+#     context = {
+#         'report':report,
         
+#     }
+#     return redirect('main',context)
+@login_required
+def delete_report(request, id):
+    report = get_object_or_404(Report, id=id)
+    report.delete()
+    return redirect('reports:main')  # Replace 'main' with the appropriate URL name for the desired destination
