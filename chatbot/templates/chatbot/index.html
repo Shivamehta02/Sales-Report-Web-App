@@ -12,14 +12,14 @@
 
 <p class="text-muted ">[Note- The chatbot may give some error messages as API is still in progress]</p>
 <br>
-{% if prompt %}
 
+{% if prompt %}
 <div>
     <img src="{{profile.avatar.url}}" style="float:left;" alt = "my-profile" class ="avatar-sm">
     <h6 > {{prompt|safe}}</h6>
-    
 </div> 
 {% endif %}
+
 <br>
 
 <div class="card" style="background-color: #f1f1f1;">

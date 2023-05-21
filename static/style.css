@@ -32,6 +32,13 @@ transition: .5s;
     border-radius: 50%;
 
 }
+.product-big{
+
+    height: 200px;
+    width:  200px;
+    
+    border-radius: 50%;
+}
 
 .avatar-big{
 

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+
+my products
+
+{% endblock title %}
+
+{% block content %}
+
+{% comment %} 
+<form action="" method ='POST'>
+    {% csrf_token %}
+    {{product_form|crispy}}
+    <button type ="submit" class="btn btn-primary mt-3">Add Product</button>
+
+</form>
+<br> {% endcomment %}
+
+<h1>My Products</h1>
+<br>
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for x in obj %}
+            <div class="col-md-4">
+                <div class="card" style="width: 20rem;">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 300px;">
+                        <img src="{{ x.image.url }}"  alt="no-picture" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ x.name|capfirst }}</h5>
+                        <p class="card-text">Price: ${{ x.price }} <i class="bi bi-tag"></i></p>
+                        {% comment %} <a href="{% url 'products:edit' x.id %}" class="btn btn-primary">Edit</a> {% endcomment %}
+                    </div>
+                </div>
+                <br>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    
+{% endblock content %}
+
+

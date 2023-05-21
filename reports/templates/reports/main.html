@@ -27,7 +27,7 @@
           <p class="card-text">{{obj.remarks|truncatewords:2}}</p>
           <a href="{{obj.get_absolute_url}}"class="btn btn-primary">details <i class="bi bi-card-list"></i></a>
           <a href="{% url 'reports:pdf' obj.pk %}"class="btn btn-danger">pdf <i class="bi bi-file-earmark-pdf"></i></a>
-          <a href="#exampleModal-{{forloop.counter}}" data-bs-toggle="modal" data-bs-target="#exampleModal{{ forloop.counter }}" class="btn btn-danger">delete <i class="bi bi-trash"></i></a>
+          <a href="#exampleModal-{{forloop.counter}}" data-bs-toggle="modal" data-bs-target="#exampleModal{{ forloop.counter }}" class="btn btn-danger ">delete <i class="bi bi-trash"></i></a>
         </div>
       </div>
 

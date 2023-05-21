@@ -30,7 +30,14 @@ my profile
         <div class="card-body">
           {{profile.user}}
         </div>
-      </div>
+    </div>
+    <br>
+    <p class="font-monospace">Name</p>
+    <div class="card">
+        <div class="card-body">
+          {{profile.user.first_name}} {{profile.user.last_name}}
+        </div>
+    </div>
       <br>
       {% comment %} bio {% endcomment %}
       <p class="font-monospace">Bio</p>
